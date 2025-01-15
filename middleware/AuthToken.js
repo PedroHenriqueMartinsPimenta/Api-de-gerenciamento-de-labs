@@ -5,8 +5,9 @@ const mid = (req, res, next) => {
     if (!token) {
         res.json({logado: false, mensagem: 'Token não foi enviado.'})
     }
-    jwt.verify(token, process.env.TOKEN, (err, decoded) => {
+    jwt.verify(token, "sdsdjshkgbvgz", (err, decoded) => {
         if (err) {
+            console.log(err)
             res.json({locado: false, mensagem: 'Falha na autenticação'})
         }
     })
