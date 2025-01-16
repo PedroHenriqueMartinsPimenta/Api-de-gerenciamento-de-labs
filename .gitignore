@@ -1,0 +1,30 @@
+# Node.js
+node_modules/
+
+# Ambiente de desenvolvimento
+.env
+
+# Logs
+*.log
+
+# Diretórios de build
+build/
+dist/
+
+# Arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+
+# Arquivos de cache do npm
+npm-debug.log*
+
+# Arquivos de upload
+uploads/
+
+# Arquivos gerados por IDEs
+.vscode/
+.idea/
+
+# Arquivos do editor
+*.swp
+*.swo

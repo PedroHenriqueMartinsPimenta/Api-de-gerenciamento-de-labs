@@ -9,6 +9,22 @@ const user = require('../models/user');
 
 const db_connect = 'mongodb+srv://pedrohenrique234322:pedrohenrique234322@cluster0.a3g2d.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
+routes.get("/", (req, res) => {
+    res.send(`
+        <h1>Bem-vindo à API de Gerenciamento de Laboratórios</h1>
+        <p>Abaixo está a lista de rotas disponíveis:</p>
+        <ul>
+            <li><strong>POST</strong> /logar - Realiza o login de um usuário.</li>
+            <li><strong>POST</strong> /caduser - Cadastra um novo usuário.</li>
+            <li><strong>POST</strong> /laboratorio/novo - Cadastra um novo laboratório (autenticado).</li>
+            <li><strong>GET</strong> /laboratorio/relatorio - Gera um relatório em PDF de todos os laboratórios.</li>
+        </ul>
+        <p>Certifique-se de usar um cliente HTTP, como Postman ou cURL, para testar as rotas.</p>
+    `);
+});
+
+
+
 routes.post("/logar", async function(req, res){
     let email = req.body.email;
     let senha = req.body.senha;

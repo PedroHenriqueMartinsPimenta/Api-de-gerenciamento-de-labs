@@ -41,6 +41,10 @@ cd Api-de-gerenciamento-de-labs-master
 npm install
 ```
 
+```bash
+npm install express
+```
+
 ### 3️⃣ Configure o Ambiente  
 
 Crie um arquivo `.env` na raiz do projeto e adicione as variáveis:  
