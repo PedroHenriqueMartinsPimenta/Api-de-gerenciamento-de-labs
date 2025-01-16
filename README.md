@@ -15,7 +15,7 @@ Bem-vindo ao Sistema de Gerenciamento de Salas! Este é um projeto que utiliza N
 
 ---
 
-## 🚀 Tecnologias Utilizadas  
+## 🚀 Tecnologias Utilizadas  (REQUISITOS)
 
 - **Node.js** e **Express** para o backend.  
 - **MongoDB** para banco de dados.  
@@ -31,8 +31,8 @@ Bem-vindo ao Sistema de Gerenciamento de Salas! Este é um projeto que utiliza N
 ### 1️⃣ Clone o Repositório  
 
 ```bash
-git clone https://github.com/jhonatan-goncalves-pereira/api-gerenciamento-salas.git
-cd gerenciamento-de-salas
+git clone https://github.com/PedroHenriqueMartinsPimenta/Api-gerenciamento-labs.git
+cd Api-de-gerenciamento-de-labs-master
 ```
 
 ### 2️⃣ Instale as Dependências  
