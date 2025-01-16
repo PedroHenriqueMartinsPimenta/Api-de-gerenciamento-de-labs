@@ -9,22 +9,6 @@ const user = require('../models/user');
 
 const db_connect = 'mongodb+srv://pedrohenrique234322:pedrohenrique234322@cluster0.a3g2d.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
-routes.get("/", (req, res) => {
-    res.send(`
-        <h1>Bem-vindo à API de Gerenciamento de Laboratórios</h1>
-        <p>Abaixo está a lista de rotas disponíveis:</p>
-        <ul>
-            <li><strong>POST</strong> /logar - Realiza o login de um usuário.</li>
-            <li><strong>POST</strong> /caduser - Cadastra um novo usuário.</li>
-            <li><strong>POST</strong> /laboratorio/novo - Cadastra um novo laboratório (autenticado).</li>
-            <li><strong>GET</strong> /laboratorio/relatorio - Gera um relatório em PDF de todos os laboratórios.</li>
-        </ul>
-        <p>Certifique-se de usar um cliente HTTP, como Postman ou cURL, para testar as rotas.</p>
-    `);
-});
-
-
-
 routes.post("/logar", async function(req, res){
     let email = req.body.email;
     let senha = req.body.senha;
@@ -77,7 +61,7 @@ routes.post('/laboratorio/novo', auth, async function(req, res){
     }
 });
 
-routes.get("/laboratorio/relatorio", async function(req, res){
+routes.get("/laboratorio/relatorio", async function(req, res) {
     try {
         await mongoose.connect(db_connect);
         const labs = await laboratorio.find();
@@ -86,20 +70,32 @@ routes.get("/laboratorio/relatorio", async function(req, res){
         res.setHeader('Content-Type', 'application/pdf');
         res.setHeader('Content-Disposition', 'attachment; filename="relatorio.pdf"');
 
+    
         labs.forEach(lab => {
             doc.text(`Nome: ${lab.nome}`);
             doc.text(`Descrição: ${lab.desc}`);
             doc.text(`Capacidade: ${lab.capacidade}`);
-            if (lab.foto) doc.image(lab.foto, { width: 150 });
+
+            if (lab.foto) {
+                try {
+                    doc.image(lab.foto, { width: 150 }); 
+                } catch (error) {
+                    console.error(`Erro ao carregar imagem do laboratório "${lab.nome}": ${error.message}`);
+                    doc.text('Imagem não disponível'); 
+                }
+            } else {
+                doc.text('Imagem não disponível'); 
+            }
             doc.text("\n");
         });
 
         doc.pipe(res);
         doc.end();
     } catch (error) {
-        console.log(error)
+        console.error(error);
         res.status(500).send("Erro ao gerar relatório.");
     }
 });
+
 
 module.exports = routes;
