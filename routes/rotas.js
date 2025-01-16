@@ -9,6 +9,18 @@ const user = require('../models/user');
 
 const db_connect = 'mongodb+srv://pedrohenrique234322:pedrohenrique234322@cluster0.a3g2d.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 
+routes.get("/", (req, res) => {
+    res.json({
+        message: "Bem-vindo à API de Gerenciamento de Laboratórios",
+        rotas: {
+            "/logar": "POST - Autenticação de usuário",
+            "/caduser": "POST - Cadastro de novo usuário",
+            "/laboratorio/novo": "POST - Cadastro de novo laboratório (requer autenticação)",
+            "/laboratorio/relatorio": "GET - Gera um relatório em PDF com a lista de laboratórios"
+        }
+    });
+});
+
 routes.post("/logar", async function(req, res){
     let email = req.body.email;
     let senha = req.body.senha;
