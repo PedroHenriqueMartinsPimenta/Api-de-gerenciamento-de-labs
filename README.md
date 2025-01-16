@@ -77,6 +77,7 @@ Autentica um usuário e retorna um token válido.
 **Exemplo de Response**:  
 ```json
 {
+    "logado": true,
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI..."
 }
 ```
@@ -90,9 +91,29 @@ Cadastra um novo laboratório.
 - `nome` (string): Nome do laboratório.  
 - `descricao` (string): Descrição do laboratório.  
 - `capacidade` (number): Capacidade máxima.  
-- `foto` (file): Upload da imagem do laboratório.  
+- `foto` (string): Upload da imagem do laboratório.  
 
 ---
+
+
+
+**Exemplo de Request**:  
+```json
+{
+    "nome": "Lab1 de Informática",
+    "descricao": "sala para aulas práticas",
+    "capacidade": "1",
+    "foto":"fill... url",
+		"token": "TOKEN_GERADO_GET_LOGIN"
+}
+```
+
+**Exemplo de Response**:  
+```json
+{
+    "mensagem": "Lab cadastrado com sucesso"
+}
+```
 
 ### 📄 **GET** `/laboratorio/relatorio`  
 Gera um arquivo PDF com a lista de todos os laboratórios.  
